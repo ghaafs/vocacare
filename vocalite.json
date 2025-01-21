@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "voca-lite",
+    "private_key_id": "76e168bd1d536520431c9fd96c9c2c2da01e246a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDu/0LE2esqlBjE\n9IZsiLEEUDbzdv8oDgn8yyJ14LK/9yLNA7ygoWw+Hr7Xib9686bOW9+Bb9BaPATg\nMi+o53R+1cIYHIo81xb9pqXsawo4QA+ZONKNkfpGa5yuesQ023d+zht7SkcmEpaG\n63/DjPPJ6nFPpCChSGy9V7OV9GGSu6do9rQ66TEqVB5l5075v9El+zJAzrLgvCH3\nLnRjVMv+CoAgc+2V65YixjuKn5uAMRPCBvO04quxr2aGQioCcFGFYK6KlS1QSzxK\ncLimniP2dvidLdE1tutkx8h23hw7m7ns4N5AU7w0wMglSVP4PRa0lHcDZh5lQ6Bs\n0ljcY9TDAgMBAAECggEAC0ncRf8DCBJRry/bj5HPRqRhTBOhTquHFj0kBgxUdRO/\nvY5BIRcuzSpXmkej1zNd/B5DytHUtgZitpI4RRKVoo4HKmtirif8qoNuD+Ioa+q+\nsd6It24fM6dOkcEztkltdfxXOPYTsT0shffmo35rX2ym6HuYnPWWSUU0ss8Fss/5\n4+4KL6nxn7CCkL1VUBfXDrNJOhCezf65aRWdj8GLu0lQcPiol2DlEycvkcc+nSnp\nHgFlF/uurdN2mEAHl/PryOwcbnkNmFMgoImy9J59Egyo1Q6OSIhqdV64IGaJo1Pg\nETsvfmpobK7fLuBK7U6h1GUa5Wa9PhLkEuoFumT/+QKBgQD78ErDv8lZRXqvtk8o\n746Q7IeRspVQvO/aT9+0r2DlqzoXeJIyRs4vzPjkUQbKXirAJiLMT2b0raXs112z\n0kY0wiCME3JbxXVExTgqTYWPeUHYaxVuPrhKnnOsRXBQJezztnCTGpZZeV1iZx6T\nVZzfcpok93lUc8yjZENxLN6yywKBgQDy2Y+v/7llDZGAxtdznoDhEu0URCMQoPaM\nOm4UkIGw6agINAKEbx8EKlzZcLDkSSPebdNwref/gJKO62tG1+vxcMPjkIbBtxqH\nnNiqRklGap9IKeA0ZaG26jS5ul4fSvDcXh0zvBkIAHXPNQKI7ZbRaNo/+df6TBf+\nlFsUzkQO6QKBgQC+wAybcRYt9SES8OG2iMpUiAGNGr1ax/KCRH+H+lFPEvmE09E9\nJ8btAjBgDckqZ2nO2hD2yBeXofJDBDz57XcicujZpc+sFDDZxMjlnpRFMPXduhYb\nxnkaZiYGhPyock6Zp8RMXJEBZZaC7riDrQp9U/PJkWXXv2VtQHifs+1ZSQKBgFTS\nzxBvZuc4DQmI6npU87kp7is0/XZycotaYVbHfrU3d9ydpf9x/Mhsr4+3f+HM9j1b\n6Q2jgLRKyWYoLolJI/1qINHcimUhOqABleAruq5g0Y/YKJrEoO6N8aqpwPR3LZgb\nO2H1olycJIoifucq7ZHpaMoNz3V6nKrsUL/8p+L5AoGBANDUt3Bl8vVuYhPW2Ajr\naCINaqo+H1Vx907wAGifQ415ngsHGTZV8ZWe/IhFtPDviQr85IHJN5H1vG+3GiNB\nxKlsUoahefvSQKP6LybXl88z5jBiRf+IBMOMeR3v2aR4RBa738XppoWHUgV42ZsB\nOoFU5Fr+L/1m8twS9XkNYcWu\n-----END PRIVATE KEY-----\n",
+    "client_email": "voca-lite@voca-lite.iam.gserviceaccount.com",
+    "client_id": "102571547431980319730",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/voca-lite%40voca-lite.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+  }

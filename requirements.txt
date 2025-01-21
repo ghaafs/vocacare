@@ -1,2 +1,12 @@
+matplotlib
+numpy
+pyaudio
+google-cloud-speech
+google-cloud-texttospeech
+google-generativeai
+python-dotenv
+playsound
 streamlit
-openai
+speechrecognition
+twilio
+subprocess32  # untuk sistem Python 2.x
