@@ -1,0 +1,12 @@
+image: python:3.11  # Adjust Python version if needed
+
+stages:
+  - install
+
+install_dependencies:
+  stage: install
+  script:
+    - apt-get update
+    - apt-get install -y portaudio19-dev  # Install PortAudio dependencies
+    - pip install --upgrade pip
+    - pip install pyaudio  # Install PyAudio
