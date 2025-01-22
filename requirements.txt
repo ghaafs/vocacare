@@ -1,6 +1,6 @@
 matplotlib
 numpy
-pyaudio
+pip install playsound==1.2.2
 google-cloud-speech
 google-cloud-texttospeech
 google-generativeai
@@ -9,4 +9,4 @@ playsound
 streamlit
 speechrecognition
 twilio
-subprocess32  # untuk sistem Python 2.x
+subprocess32
