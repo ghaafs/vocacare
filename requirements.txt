@@ -1,11 +1,11 @@
 matplotlib
 numpy
 playsound==1.2.2
+pyaudio==0.2.11
 google-cloud-speech
 google-cloud-texttospeech
 google-generativeai
 python-dotenv
-playsound
 streamlit
 speechrecognition
 twilio
