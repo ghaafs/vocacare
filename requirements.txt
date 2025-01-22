@@ -1,6 +1,6 @@
 matplotlib
 numpy
-pip install playsound==1.2.2
+playsound==1.2.2
 google-cloud-speech
 google-cloud-texttospeech
 google-generativeai
