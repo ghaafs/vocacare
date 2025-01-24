@@ -21,23 +21,7 @@ load_dotenv()
 
 # API Keys and Credentials
 gemini_api_key = os.getenv("GEMINI_API_KEY")
-# Baca isi JSON dari Streamlit Secrets
-google_api_credentials = st.secrets["vocalite"]["json"]
-
-# Parse JSON menjadi dictionary
-config = json.loads(google_api_credentials)
-
-# Akses data
-st.write("Project ID:", config["project_id"])
-st.write("Private Key:", config["private_key"])
-st.write("Private Key ID:", config["private_key_id"])
-st.write("Client Email:", config["client_email"])
-st.write("Client ID:", config["client_id"])
-st.write("Auth Uri:", config["auth_uri"])
-st.write("Token Uri:", config["token_uri"])
-st.write("Auth Provider:", config["auth_provider_x509_cert_url"])
-st.write("Client Uri:", config["client_x509_cert_url"])
-st.write("Universe Domain:", config["universe_domain"])
+google_api_credentials = '/Users/ghanyfitriamaras/Documents/VOCA_LAB/voca-new-lab/VOCACARE/new.json'
 
 # Setup for Gemini (NLP)
 genai.configure(api_key=gemini_api_key)
