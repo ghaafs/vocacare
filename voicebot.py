@@ -25,7 +25,7 @@ gemini_api_key = os.getenv("GEMINI_API_KEY")
 google_api_credentials = st.secrets["vocalite"]["json"]
 
 # Parse JSON menjadi dictionary
-config = json.loads(service_account_info)
+config = json.loads(google_api_credentials)
 
 # Akses data
 st.write("Project ID:", config["project_id"])
