@@ -6,9 +6,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
 import subprocess
+import datetime
+import pandas as pd
 
 # Import functions from voicebot.py
 from voicebot import generate_response, text_to_speech, speech_to_text
+
+# Import reminder functions from reminder.py
+from reminder import set_reminder, play_reminder, log_reminder, download_log
 
 # Function for recording audio with live visualization
 def record_audio_with_visualization(filename="input.wav", duration=8):
@@ -63,7 +68,7 @@ def show_home():
     <div style="font-size: 18px; line-height: 2; color: #4B0082;">
         Selamat datang di Vocacare! 
         Aplikasi ini dirancang khusus untuk mendukung kebutuhan lansia melalui interaksi suara yang mudah digunakan.
-        Di dalam voicebot, anda akan mendapatkan reminder yang telah dipersonalisasi.
+        Di dalam voicebot, anda akan mendapatkan reminder yang Anda personalisasi.
         Anda juga dapat menggunakan fitur "Tombol SOS" untuk situasi darurat.
         <br><br>
         Silakan pilih fitur dari menu navigasi di samping untuk memulai.
@@ -99,47 +104,76 @@ def show_sos():
     if st.button("\U0001F6A8 Kirim SOS", key="send_sos"):
         st.write("\U0001F4E8 Mengirimkan peringatan darurat... Harap tunggu!")
         try:
-            subprocess.run(["python", "sos.py"])  # Run sos.py script
+            # Ensure the 'sos.py' script is in the correct location
+            subprocess.run(["python", "sos.py"], check=True)  # Run sos.py script
             st.success("Peringatan darurat berhasil dikirim!")
         except Exception as e:
             st.error(f"Terjadi kesalahan: {e}")
 
-# Function for the Checklist Reminder page
-def show_checklist():
-    st.title("\U0001F4CB Checklist Reminder - Pengingat Harian")
+# Function for the Reminder page
+def show_reminder():
+    st.title("\U0001F4CB Reminder - Pengingat Harian")
     st.write("""
     Fitur ini dirancang untuk membantu lansia mencatat dan mengingat aktivitas harian mereka.
-    Tandai aktivitas yang sudah selesai dilakukan.
+    Anda bisa menambahkan pengingat harian dan melihat log aktivitas pengingat.
     """)
 
-    # Default checklist items
-    checklist_items = [
-        "Minum obat pagi",
-        "Melakukan senam ringan",
-        "Minum air putih",
-        "Makan siang",
-        "Istirahat siang",
-        "Minum obat malam",
-        "Persiapan tidur"
-    ]
+    # Input for reminder time and message
+    time_input = st.time_input("Pilih Waktu Pengingat", value=datetime.time(9, 0))  # default jam 9 pagi
+    message = st.text_input("Pesan Pengingat (misal: Waktunya minum obat)")
 
-    # Load checklist state from session state
-    if "checklist_states" not in st.session_state:
-        st.session_state.checklist_states = [False] * len(checklist_items)
+    if 'reminders' not in st.session_state:
+        st.session_state.reminders = []
 
-    # Display checklist
-    for i, item in enumerate(checklist_items):
-        st.session_state.checklist_states[i] = st.checkbox(item, value=st.session_state.checklist_states[i])
+    # Add reminder button
+    if st.button("Tambah Pengingat"):
+        if message:
+            reminder_time = datetime.datetime.combine(datetime.date.today(), time_input)
+            time_to_wait = set_reminder(reminder_time, message)
+            st.session_state.reminders.append((reminder_time, message))
+            st.write(f"Pengingat ditambahkan untuk {reminder_time.strftime('%H:%M:%S')}.")
 
-    # Save button
-    if st.button("Simpan Checklist"):
-        completed_items = [item for i, item in enumerate(checklist_items) if st.session_state.checklist_states[i]]
-        st.success(f"Checklist tersimpan! Aktivitas selesai: {', '.join(completed_items)}")
+    # Displaying reminders with "Selesai" button
+    if st.session_state.reminders:
+        st.write("Daftar Pengingat Hari Ini:")
+        for i, reminder in enumerate(st.session_state.reminders):
+            reminder_time, reminder_msg = reminder
+            col1, col2 = st.columns([0.8, 0.2])
+            col1.write(f"{reminder_time.strftime('%H:%M:%S')}: {reminder_msg}")
+
+            # Selesai button
+            if col2.button("Selesai", key=f"done_{i}"):
+                # Ensure correct format for log_reminder
+                log_reminder({
+                    "Message": reminder_msg,
+                    "Status": "Selesai",
+                    "Time": reminder_time
+                })
+                st.session_state.reminders.remove(reminder)  # Remove completed reminder
+                st.write(f"Pengingat untuk {reminder_msg} pada {reminder_time.strftime('%H:%M:%S')} selesai.")
+
+    # Display logs
+    if 'log_entries' in st.session_state and st.session_state['log_entries']:
+        st.write("Log Pengingat:")
+        log_df = pd.DataFrame(st.session_state['log_entries'])
+        st.dataframe(log_df)  # Display log as a table
+
+        # Add button to download log as .xlsx file
+        log_file = download_log()
+        if log_file:
+            st.download_button(
+                label="Download Log Pengingat (.xlsx)",
+                data=log_file,
+                file_name="log_pengingat.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
+    else:
+        st.write("Belum ada log pengingat.")
 
 # Sidebar for navigation
 st.sidebar.title("\U0001F5FA Menu")
 st.sidebar.markdown("<div style='color: #6A5ACD; font-size: 16px;'>Pilih halaman:</div>", unsafe_allow_html=True)
-page = st.sidebar.radio("", ["Home", "Voicebot", "SOS", "Checklist Reminder"], key="menu")
+page = st.sidebar.radio("", ["Home", "Voicebot", "SOS", "Reminder"], key="menu")
 
 # Display the selected page
 if page == "Home":
@@ -148,32 +182,5 @@ elif page == "Voicebot":
     show_voicebot()
 elif page == "SOS":
     show_sos()
-elif page == "Checklist Reminder":
-    show_checklist()
-
-# Add visual style
-st.markdown("""
-    <style>
-        body {
-            background-color: #F0F8FF; /* Light blue background */
-            color: #4B0082; /* Indigo text */
-        }
-        .stButton>button {
-            font-size: 18px;
-            padding: 15px 30px;
-            color: white;
-            background-color: #20B2AA; /* Tosca green */
-            border: none;
-            border-radius: 10px;
-        }
-        .stButton>button:hover {
-            background-color: #5F9EA0; /* Slightly darker tosca */
-        }
-        .stSidebar {
-            background-color: ##0E1351; /* Soft purple */
-        }
-        .stSidebar .css-1aumxhk {
-            color: white; /* White text for sidebar */
-        }
-    </style>
-""", unsafe_allow_html=True)
+elif page == "Reminder":
+    show_reminder()
