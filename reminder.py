@@ -11,7 +11,7 @@ import io
 scheduler = BackgroundScheduler()
 
 # Path to your Google Cloud credentials JSON file
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = '/Users/ghanyfitriamaras/Documents/VOCA_LAB/voca-new-lab/VOCACARE/new.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'new.json'
 
 # Google Cloud Text-to-Speech client
 client = texttospeech.TextToSpeechClient()
