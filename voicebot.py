@@ -22,7 +22,7 @@ load_dotenv()
 
 # API Keys and Credentials
 gemini_api_key = os.getenv("GEMINI_API_KEY")
-google_api_credentials = '/Users/ghanyfitriamaras/Documents/VOCA_LAB/voca-new-lab/VOCACARE/new.json'
+google_api_credentials = 'new.json'
 
 # Setup for Gemini (NLP)
 genai.configure(api_key=gemini_api_key)
